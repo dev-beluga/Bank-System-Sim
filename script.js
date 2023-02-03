@@ -190,15 +190,40 @@ const updateUI = function (acc) {
   calcDisplaySummary(acc);
 };
 
-///////////////////////////////////////
+const startLogOutTimer = function () {
+  const tick = function () {
+    const min = String(Math.trunc(time / 60)).padStart(2, 0);
+
+    const sec = String(time % 60).padStart(2, 0);
+
+    // In each call, print the remaining time to UI
+    labelTimer.textContent = `${min}:${sec}`;
+    if (time === 0) {
+      clearInterval(timer);
+      labelWelcome.textContent = 'Log in to get started';
+      containerApp.style.opacity = 0;
+    }
+
+    // Decrease 1s
+    time--;
+  };
+  /////////// Set time to 5 minutes
+  let time = 120;
+
+  // Call the timer every second
+  tick();
+  const timer = setInterval(tick, 1000);
+
+  return timer;
+}; //////////////////////////////
 // Event handlers
-let currentAccount;
+let currentAccount, timer;
 
 //Test login
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = 100;
-
+// currentAccount = account1;
+// updateUI(currentAccount);
+// containerApp.style.opacity = 100;
+/* 
 const now = new Date();
 const options = {
   hour: 'numeric',
@@ -207,7 +232,7 @@ const options = {
   month: 'long',
   year: 'numeric',
   weekday: 'short',
-};
+}; 
 
 // const locale = navigator.language;
 // console.log(locale);
@@ -215,7 +240,7 @@ const options = {
 labelDate.textContent = new Intl.DateTimeFormat(
   currentAccount.locale,
   options
-).format(now);
+).format(now);*/
 
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
@@ -242,11 +267,11 @@ btnLogin.addEventListener('click', function (e) {
       day: 'numeric',
       month: 'long',
       year: 'numeric',
-      weekday: 'short',
+      // weekday: 'short',
     };
 
-    const locale = navigator.language;
-    console.log(locale);
+    // const locale = navigator.language;
+    // console.log(locale);
 
     labelDate.textContent = new Intl.DateTimeFormat('en-US', options).format(
       now
@@ -263,6 +288,10 @@ btnLogin.addEventListener('click', function (e) {
     // Clear input fields
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
+
+    // Timer
+    if (timer) clearInterval(timer);
+    timer = startLogOutTimer();
 
     // Update UI
     updateUI(currentAccount);
@@ -293,6 +322,9 @@ btnTransfer.addEventListener('click', function (e) {
 
     // Update UI
     updateUI(currentAccount);
+    // Reset timer
+    clearInterval(timer);
+    timer = startLogOutTimer();
   }
 });
 
@@ -302,14 +334,20 @@ btnLoan.addEventListener('click', function (e) {
   const amount = Math.floor(inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
-    // Add movement
-    currentAccount.movements.push(amount);
+    setTimeout(function () {
+      // Add movement
+      currentAccount.movements.push(amount);
 
-    //Add loan date
-    currentAccount.movementsDates.push(new Date().toISOString());
+      //Add loan date
+      currentAccount.movementsDates.push(new Date().toISOString());
 
-    // Update UI
-    updateUI(currentAccount);
+      // Update UI
+      updateUI(currentAccount);
+
+      // Reset timer
+      clearInterval(timer);
+      timer = startLogOutTimer();
+    }, 2500);
   }
   inputLoanAmount.value = '';
 });
@@ -543,4 +581,15 @@ const calcDay = (date1, date2) =>
 
 const days1 = calcDay(new Date(2022, 12, 1), new Date(2023, 2, 1));
 // console.log(days1);
+ */
+//setTimeout
+
+// setTimeout(() => console.log('Hi'), 3000);
+
+//setInterval
+/* 
+setInterval(function () {
+  const now = new Date();
+  console.log(now);
+}, 1000);
  */
