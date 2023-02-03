@@ -19,7 +19,7 @@ See what it look like and play around it,  just follow [this  link](https://welc
 
 
 ## Test User and pin to login to the system 
-<em > ⚠️ It has timer of two minutes , and within this time if there is no transcation processed the system will log you out from it.⚠️ </em>
+<em > ⚠️ It has timer of five minutes , and within this time if there is no transcation processed the system will log you out from it.⚠️ </em>
 
 
 <b>user1: js , pin: 1111<b>
