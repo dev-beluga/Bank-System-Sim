@@ -15,6 +15,9 @@ See what it look like and play around it,  just follow [this  link](https://pig-
 * Loan from the bank
 * Close Account
 
+![Bankist-flowchart](https://user-images.githubusercontent.com/56386562/216535789-24c7e0ab-1f32-4f71-beed-b2051b8de602.png)
+
+
 ## Test User and pin to login to the system 
 <em > ⚠️ It has timer of two minutes , and within this time if there is no transcation processed the system will log you out from it.⚠️ </em>
 
