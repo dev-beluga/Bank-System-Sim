@@ -7,7 +7,7 @@ Simple javascript website which is built with vanila javascript.
 * Intl (Internationalization API)
 * setTimeout and setInterval
 
-See what it look like and play around it,  just follow [this  link](https://pig-game-ag40.onrender.com/).
+See what it look like and play around it,  just follow [this  link](https://welcome-to-js-bank.onrender.com).
 
 ### Functions of the system
 
